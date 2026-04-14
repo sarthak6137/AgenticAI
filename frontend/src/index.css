@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* 1. Define our custom UI colors and animations for Tailwind v4 */
+@theme {
+  --color-brand-50: #eff6ff;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-900: #1e3a8a;
+  --animate-spin-slow: spin 3s linear infinite;
+}
+
+/* 2. Tell Tailwind to use the '.dark' class for dark mode (triggered by our React Navbar) */
+@custom-variant dark (&:is(.dark *));
+
+/* 3. Create our premium background gradient utility */
+@utility bg-mesh {
+  background-image: radial-gradient(at 40% 20%, hsla(228,100%,74%,0.15) 0px, transparent 50%),
+                    radial-gradient(at 80% 0%, hsla(189,100%,56%,0.15) 0px, transparent 50%),
+                    radial-gradient(at 0% 50%, hsla(355,100%,93%,0.05) 0px, transparent 50%);
+}
+
+/* 4. Set base body styles */
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 transition-colors duration-300;
+  }
+  /* When dark mode is active, change the body background */
+  .dark body {
+    @apply bg-[#0B0F19] text-slate-50;
+  }
+}
